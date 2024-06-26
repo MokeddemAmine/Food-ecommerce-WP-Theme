@@ -1,0 +1,30 @@
+.text-main {
+  color: #dbf1ff;
+}
+
+.text-orange {
+  color: #f65024;
+}
+
+.text-yellow {
+  color: #fee966;
+}
+
+.bg-main {
+  background-color: #dbf1ff;
+}
+
+.bg-orange {
+  background-color: #f65024;
+}
+
+.bg-yellow {
+  background-color: #fee966;
+}
+
+body {
+  font-family: "Playwrite NZ", cursive;
+  font-optical-sizing: auto;
+  font-weight: weight;
+  font-style: normal;
+}/*# sourceMappingURL=main.css.map */

@@ -1,0 +1,26 @@
+
+
+// Places
+$places:(
+    "color":"text",
+    "background-color":'bg',
+);
+
+// Colors
+$main-color:#dbf1ff;
+$second-color:#f65024;
+$third-color:#fee966;
+
+$colors:(
+    "main"      : $main-color,
+    "orange"    : $second-color,
+    "yellow"    : $third-color
+);
+
+@each $prop,$place in $places{
+    @each $name,$color in $colors{
+        .#{$place}-#{$name}{
+            #{$prop}:#{$color};
+        }
+    }
+}
