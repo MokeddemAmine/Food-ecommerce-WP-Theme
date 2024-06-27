@@ -1,5 +1,6 @@
 
 @import 'colors';
+@import 'buttons';
 
 
 // <uniquifier>: Use a unique and descriptive class name
@@ -10,4 +11,53 @@ body{
     font-optical-sizing: auto;
     font-weight: weight;
     font-style: normal;
+  }
+
+  a{
+    text-decoration: none;
+    color:$main-color;
+  }
+  
+  /* start header */
+  header{
+    #image-logo{
+      width:120px;
+      height:70px;
+      border-radius:2rem;
+    }
+  }
+
+  .header-image{
+    width:100%;
+    height:300px;
+    .image-fluid{
+      display:inline-block;
+      width:100%;
+      height:100%;
+      object-fit: cover;
+    }
+  }
+  #myTab{
+    padding-bottom:.25rem;
+    border-color:#efefef;
+    li{
+      a{
+        border:none !important;
+        color:#333
+      }
+      a.active{
+        color:$main-color;
+        position:relative;
+      }
+      a.active:after{
+        content:"";
+        position:absolute;
+        bottom:1px;
+        left:50%;
+        transform: translateX(-50%);
+        width:40px;
+        height:2px;
+        background-color: $main-color;
+      }
+    }
   }

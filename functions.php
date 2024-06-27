@@ -4,12 +4,18 @@
         add_theme_support('title-tag');
         add_theme_support('post-thumbnails');
         add_theme_support('custom-background');
-        add_theme_support('custom-header');
+        add_theme_support('custom-header',array(
+            'flex-width'    => true,
+            'width'         => 1200,
+            'flex-height'   => true,
+            'height'        => 300,
+            'default-image' => get_template_directory_uri().'/assets/imgs/header.jpg',
+        ));
         add_theme_support('automatic-feed-links');
         add_theme_support('customize-selective-refresh-widgets');
         add_theme_support('custom-logo',array(
-            'height'        => 150,
-            'width'         => 200,
+            'height'        => 50,
+            'width'         => 50,
             'flex-height'   => true,
             'flex-width'    => true,
             'header-text'   => array('site-title','site-description'),

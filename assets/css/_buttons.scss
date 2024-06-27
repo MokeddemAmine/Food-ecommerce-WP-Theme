@@ -1,0 +1,26 @@
+
+.btn-orange{
+    background-color: $main-color;
+    display:inline-block;
+    padding:.3rem 1.2rem;
+    margin:.5rem 0;
+    color:white;
+    border:1px solid $main-color;
+    transition: .3s;
+}
+.btn-orange:hover{
+    opacity:.8;
+}
+.btn-outline-orange{
+    background-color: white;
+    color:$main-color;
+    display:inline-block;
+    padding:.3rem 1.2rem;
+    margin:.5rem 0;
+    border:1px solid $main-color;
+    transition:.3s;
+}
+.btn-outline-orange:hover{
+    background-color: $main-color;
+    color:white;
+}
