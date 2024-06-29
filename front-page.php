@@ -70,17 +70,24 @@
 
                                                     $image = wp_get_attachment_image_src(get_post_thumbnail_id(get_the_ID()),'thumbnail');
                                                     ?>
+                                                        
                                                         <div class="row p-2 my-3">
-                                                            <div class="col-4">
-                                                                <img src="<?php echo $image[0]; ?>" alt="">
+                                                            <div class="col-3">
+                                                                <img src="<?php echo $image[0]; ?>" alt="<?php echo wp_get_attachment_caption(get_the_ID()) ?>">
                                                             </div>
-                                                            <div class="col-8">
+                                                            <div class="col-6">
                                                                 <h3><?php echo get_the_title(); ?></h3>
                                                                 <p><?php echo get_the_title(); ?></p>
                                                             </div>
+                                                            <div class="col-3 d-flex flex-column justify-content-end">
+                                                                <span class="d-inline-block mb-3 d-flex align-items-center justify-content-between">
+                                                                    <?php wc_get_template('loop/price.php'); ?>
+                                                                    <?php wc_get_template('loop/add-to-cart.php'); ?>
+                                                                </span>
+                                                            </div>
                                                         </div>
                                                     <?php
-                                                    wc_get_template('loop/add-to-cart.php');
+                                                    
                                                 }
                                             }
                                             wp_reset_postdata();
@@ -99,7 +106,14 @@
             
         </div>
         <div class="col-4">
-            <span class="w-50 ml-auto bg-main d-inline-block text-capitalize">mini cart</span>
+            <span class="mini-cart w-50 ml-auto bg-main d-inline-block text-capitalize">
+                <div class="widget_shopping_cart_content">
+                    <?php
+                        woocommerce_mini_cart();
+                        // wc_get_template('cart/mini-cart.php');
+                    ?>
+                </div>
+            </span>
         </div>
     </div>
 </div>
