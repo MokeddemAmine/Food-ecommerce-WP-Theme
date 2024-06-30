@@ -37,6 +37,41 @@
 
         // add scripts files
         wp_enqueue_script('bootstrap-jquery','https://code.jquery.com/jquery-3.7.1.min.js',array(),false,true);
-        wp_enqueue_script('popper','https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js',array('bootstrap-jquery'),false,true);
-        wp_enqueue_script('bootstrap-js','https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js',array('bootstrap-jquery'),false,true);
+        wp_enqueue_script('popper','https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js',array('jquery'),false,true);
+        wp_enqueue_script('bootstrap-js','https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js',array('jquery'),false,true);
+        if(is_front_page()){
+            wp_enqueue_script('food-add-js',get_template_directory_uri().'/assets/js/food-add.js',array('jquery'),false,true);
+            wp_localize_script('food-add-js','ajax_object',['ajax_url' => admin_url('admin-ajax.php')]);
+        }
+    }
+
+    add_action('wp_ajax_food_ajax_add_to_cart','food_ajax_add_to_cart');
+    add_action('wp_ajax_nopriv_food_ajax_add_to_cart','food_ajax_add_to_cart');
+
+    function food_ajax_add_to_cart(){
+
+        $product_id     = absint($_POST['product_id']); 
+        $variations     = $_POST['variations'];
+        $quantity       = 1;
+
+        foreach($variations as $variation_id){
+
+            if(WC()->cart->add_to_cart($product_id,$quantity,$variation_id) ){
+                do_action('wocommerce_ajax_added_to_cart',$product_id);
+                if('yes' == get_option('woocommerce_cart_redirect_after_add')){
+                    wc_add_to_cart_message(array($product_id => $quantity),true);
+                }
+            }else{
+                $data = array(
+                    'error' => true,
+                    'product_url'   => get_permalink($product_id)
+                );
+                
+            }
+        }
+
+        //wp_send_json($data);
+
+        
+        wp_die();
     }

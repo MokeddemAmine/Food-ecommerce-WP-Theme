@@ -33,10 +33,12 @@ if($product->get_type() == 'variable'){
 	  <div class="modal-dialog modal-xl">
 		<div class="modal-content">
 		  <div class="modal-header">
-			<h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+			<h1 class="modal-title fs-5" id="exampleModalLabel"><?php echo str_replace('-',' ',$product->slug); ?></h1>
 			<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 		  </div>
 		  <div class="modal-body">
+			<form action="" id="<?php echo $product->slug; ?>" method="get" >
+			<input type="hidden" name="<?php echo $product->slug; ?>-hidden" id="<?php echo $product->slug; ?>-hidden" value="<?php echo $product->get_id() ?>">
 			<?php 
 				$default_attributes 	= $product->get_default_attributes();
 				$available_attributes 	= $product->get_available_variations();
@@ -65,20 +67,23 @@ if($product->get_type() == 'variable'){
 						?>	
 							<div>
 								
-								<input type="checkbox" name="<?php echo $full_name ?>" value="<?php echo $full_name ?>" id="<?php echo $full_name ?>" />
-								<label for="<?php echo $full_name ?>">
+								<input type="checkbox" name="<?php echo $variation_id ?>" value="<?php echo $variation_id ?>" id="<?php echo $variation_id ?>" />
+								<label for="<?php echo $variation_id ?>">
 									<?php echo $full_name ?>
 								</label>
+
+								<a href="?add-to-cart=<?php echo $variation_id ?>" class="button" data-quantity="1">Add to cart</a>
 
 							</div>
 						<?php
 					}
 				}
 			?>
+			</form>
 		  </div>
 		  <div class="modal-footer">
 			<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-			<button type="button" class="btn btn-warning">Save changes</button>
+			<button type="submit" class="btn btn-warning food-add-btn" form="<?php echo $product->slug ?>" data-form="<?php echo $product->slug; ?>"><?php _e('Add to cart','techiefood') ?></button>
 		  </div>
 		</div>
 	  </div>
